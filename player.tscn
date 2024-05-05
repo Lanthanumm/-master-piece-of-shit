@@ -1,19 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://drmkmmglx3780"]
-
-[ext_resource type="Script" path="res://Movement.cs" id="1_db7f3"]
+[gd_scene load_steps=2 format=3 uid="uid://drmkmmglx3780"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nmo37"]
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("head")]
+[node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_db7f3")
-speed = 8.0
-jumpVelocity = 20.0
-gravity = 60.0
-acceleration = 1.0
-decceleration = 1.0
-head = NodePath("head")
-mouseSensivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_nmo37")
