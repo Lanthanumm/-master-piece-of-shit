@@ -13,7 +13,6 @@ config_version=5
 config/name="-master-piece-of-shit"
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
 
 [dotnet]
 
