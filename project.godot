@@ -12,7 +12,7 @@ config_version=5
 
 config/name="-master-piece-of-shit"
 run/main_scene="res://world.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
@@ -21,7 +21,7 @@ project/assembly_name="-master-piece-of-shit"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/addons/tbloader/plugin.cfg", "res://addons/qodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/qodot/plugin.cfg")
 
 [input]
 
