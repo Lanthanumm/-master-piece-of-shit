@@ -12,17 +12,22 @@ config_version=5
 
 config/name="-master-piece-of-shit"
 run/main_scene="res://world.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="-master-piece-of-shit"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/addons/tbloader/plugin.cfg", "res://addons/qodot/plugin.cfg")
+
 [input]
 
 forward={
 "deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":1094,"echo":false,"script":null)
 ]
 }
 backward={
