@@ -4,22 +4,22 @@ using System;
 public partial class Movement : CharacterBody3D
 {
 	[ExportCategory("Movement")]
-	[Export] public float speed;
-	[Export] public float sprintingSpeed;
-	[Export] public float jumpVelocity;
-	[Export] public float gravity;
-	[Export] public float acceleration;
+	[Export] public float speed; //standart speed
+	[Export] public float sprintingSpeed; //speed in sprinting state
+	[Export] public float jumpVelocity; //instant force added when jumping
+	[Export] public float gravity; //gravity
+	[Export] public float acceleration; 
 	[Export] public float decceleration;
 
 	[ExportCategory("Player parts")]
-	[Export] public Node3D head;
+	[Export] public Node3D head; //top part of player, contains camera
 	[Export] public Camera3D camera;
 
 	[ExportCategory("Settings")]
 	[Export] public float mouseSensivity;
 	[Export] public float fov;	
 
-	private float currentSpeed;
+	private float currentSpeed; //current speed, changes depending on state (standart speed, sprinting speed etc.)
 
     public override void _Ready()
     {
@@ -29,6 +29,7 @@ public partial class Movement : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
+		//handle FPS camera
         if (@event is InputEventMouseMotion eventMouseMotion)
 		{
 			RotateY(eventMouseMotion.Relative.X * mouseSensivity * -0.01f);
@@ -38,6 +39,8 @@ public partial class Movement : CharacterBody3D
 			newRotation.X = Mathf.Clamp(head.Rotation.X, Mathf.DegToRad(-89), Mathf.DegToRad(89));
 			head.Rotation = newRotation;
 		}
+
+		//start sprinting
 		if (@event.IsActionPressed("sprint"))
 		{
 			currentSpeed = sprintingSpeed;
@@ -48,28 +51,33 @@ public partial class Movement : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
+		//handle gravity
 		if (!IsOnFloor())
 			velocity.Y -= gravity * (float)delta;
 
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 			velocity.Y = jumpVelocity;
 
+		//take and modify an input for movement
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "backward");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+
+		//handle movement
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * currentSpeed, acceleration);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * currentSpeed, acceleration);
-			if (currentSpeed == sprintingSpeed && camera.Fov < fov + 10) camera.Fov = Mathf.MoveToward(camera.Fov, fov + 10, 1);
+			if (currentSpeed == sprintingSpeed && camera.Fov < fov + 8) camera.Fov = Mathf.MoveToward(camera.Fov, fov + 8, 1);
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, decceleration);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, decceleration);
 			currentSpeed = speed;
-			if (camera.Fov > fov) camera.Fov = Mathf.MoveToward(camera.Fov, fov - 10, 1);
+			if (camera.Fov > fov) camera.Fov = Mathf.MoveToward(camera.Fov, fov - 8, 1);
 		}
 
+		//apply velocity
 		Velocity = velocity;
 		MoveAndSlide();
 	}
