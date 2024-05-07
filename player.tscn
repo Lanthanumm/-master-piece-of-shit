@@ -12,8 +12,8 @@ jumpVelocity = 20.0
 gravity = 60.0
 acceleration = 1.0
 decceleration = 1.0
-mouseSensivity = 0.5
 head = NodePath("head")
+mouseSensivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_nmo37")

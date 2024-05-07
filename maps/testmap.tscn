@@ -45,4 +45,4 @@ gi_mode = 0
 mesh = SubResource("ArrayMesh_fqomt")
 
 [node name="player" parent="." instance=ExtResource("4_vr5si")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.7118, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.459, 4.03457, 0)

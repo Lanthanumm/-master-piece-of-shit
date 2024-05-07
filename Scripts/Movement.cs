@@ -32,9 +32,9 @@ public partial class Movement : CharacterBody3D
 			newRotation.X = Mathf.Clamp(head.Rotation.X, Mathf.DegToRad(-89), Mathf.DegToRad(89));
 			head.Rotation = newRotation;
 		}
-    }
+	}
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 
