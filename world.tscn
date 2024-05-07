@@ -15,8 +15,6 @@ sky = SubResource("Sky_nod3d")
 
 [node name="world" type="Node3D"]
 
-[node name="player" parent="." instance=ExtResource("1_asbsl")]
-
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
@@ -29,3 +27,7 @@ environment = SubResource("Environment_3vcqe")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
 transform = Transform3D(1, 0, 0, 0, 0.914896, 0.403689, 0, -0.403689, 0.914896, 0, 2.07932, 0)
+
+[node name="player" parent="." instance=ExtResource("1_asbsl")]
+sprintingSpeed = 14.0
+fov = 75.0
