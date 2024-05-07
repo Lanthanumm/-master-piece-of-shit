@@ -17,14 +17,13 @@ public partial class Movement : CharacterBody3D
 
 	[ExportCategory("Settings")]
 	[Export] public float mouseSensivity;
-	[Export] public float fov;	
+	[Export] public float fov;
 
-	private float currentSpeed; //current speed, changes depending on state (standart speed, sprinting speed etc.)
+	private float currentSpeed;
 
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
-		currentSpeed = speed;
     }
 
     public override void _Input(InputEvent @event)
@@ -47,7 +46,7 @@ public partial class Movement : CharacterBody3D
 		}
     }
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 
@@ -68,11 +67,14 @@ public partial class Movement : CharacterBody3D
 			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * currentSpeed, acceleration);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * currentSpeed, acceleration);
 			if (currentSpeed == sprintingSpeed && camera.Fov < fov + 8) camera.Fov = Mathf.MoveToward(camera.Fov, fov + 8, 1);
+			velocity.X = Mathf.MoveToward(Velocity.X, direction.X * speed, acceleration);
+			velocity.Z = Mathf.MoveToward(Velocity.Z, direction.Z * speed, acceleration);
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, decceleration);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, decceleration);
+
 			currentSpeed = speed;
 			if (camera.Fov > fov) camera.Fov = Mathf.MoveToward(camera.Fov, fov - 8, 1);
 		}
